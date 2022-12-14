@@ -1,4 +1,4 @@
-# 🪝 **Goseek:** A simple edge computing workflow
+# 🪝 **Goseek:** A simple edge function workflow
 
 <img src="https://i.imgur.com/bTfOYg7.png" />
 
@@ -6,7 +6,7 @@ One way to run a fully automated workflow on the edge for free is to use a combi
 
 You can specify an action in whatever language you desire and then create a CI pipeline that triggers based on a cron schedule. This will be the starting point and this pipeline will trigger the execution of an edge function on cloudflare.
 
-The beauty of cloudflare workers is that it can run web assembly as well as JavaScript. This means that you can conserve your initial programming language without learning JavaScript and it's vast complexities.
+The beauty of cloudflare workers is that it can run web assembly as well as JavaScript. This means that you can conserve your initial programming language without learning JavaScript and its vast complexities.
 
 Let's say that we want a golang script that creates a curated list of awesome tech articles you may want to read today.
 

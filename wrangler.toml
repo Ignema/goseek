@@ -1,0 +1,11 @@
+name = "goseek"
+main = "./src/util/wrapper.mjs"
+compatibility_date = "2022-12-13"
+
+[vars]
+GITHUB_USER = "Ignema"
+GITHUB_REPO = "goseek"
+GITHUB_TOKEN = ""
+
+[build]
+command = "make clean wasm"

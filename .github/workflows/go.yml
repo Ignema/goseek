@@ -1,12 +1,8 @@
-# This workflow will build a golang project
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-go
-
 name: Go Workflow
 
-on: [push]
-# on:
-#   schedule:
-#     - cron: '0 7 * * *'
+on:
+  issues:
+    types: [opened, edited]
 
 jobs:
   build:
@@ -20,7 +16,7 @@ jobs:
         go-version: 1.19
 
     - name: Build
-      run: go build main.go
+      run: mkdir -p bin && go build -o bin/caller src/script/caller.go
 
     - name: Run
-      run: ./main "POST" "https://webhook.site/11ef221d-9788-48ad-a1a8-8a438b5f3630" "Hello Sami"
+      run: ./bin/caller "POST" ${{ github.event.issue.title }} ${{ github.event.issue.body }}
