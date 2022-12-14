@@ -19,4 +19,4 @@ jobs:
       run: mkdir -p bin && go build -o bin/caller src/script/caller.go
 
     - name: Run
-      run: ./bin/caller "POST" ${{ github.event.issue.title }} ${{ github.event.issue.body }}
+      run: ./bin/caller "${{ github.event.issue.title }}" "${{ github.event.issue.number }}" "${{ github.event.issue.body }}"

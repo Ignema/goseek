@@ -21,13 +21,14 @@ func scrape(this js.Value, args []js.Value) interface{}  {
 		panic(err)
 	}
 
-	csv := "Title;Link\n"
+	var results []string
 	doc.Find(args[1].String()).Each(func(i int, s *goquery.Selection) {
-		link, exists := s.Attr("href")
-		if exists {
-			csv += s.Text() + ";" + link + "\n"
+		html, err := s.Html()
+		if err != nil {
+			panic(err)
 		}
+		results[i] = html
 	})
 
-	return js.ValueOf(csv)
+	return js.ValueOf(results)
 }

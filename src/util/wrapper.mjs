@@ -18,7 +18,10 @@ const processRequest = async (event) => {
       const body = await event.request.json()
       const response = await fetch(body["link"])
       const html = await response.text()
-      await comment_on_issue(body["issue"], exec_worker(html, body["query"]))
+      const results = await exec_worker(html, body["query"])
+      for(const result of results) {
+        await comment_on_issue(body["issue"], result)
+      }
       await close_issue(body["issue"])
       return new Response("Function activated!")
     } catch (error) {

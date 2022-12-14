@@ -4,11 +4,14 @@ export const comment_on_issue = async (id, comment) => {
         headers: {
             "Accept": "application/vnd.github+json",
             "Authorization": `Bearer ${GITHUB_TOKEN}`,
-            "Content-Type": "application/x-www-form-urlencoded",
+            "User-Agent": "goseek",
+            "Content-Type": "application/json",
             "X-Github-Api-Version": "2022-11-28"
         },
         method: "POST"
     })
+    .then(() => console.log(`New comment on issue #${id}`))
+    .catch((err) => console.log(`Error commenting on issue #${id}: ${err}`))
 }
 
 export const close_issue = async (id) => {
@@ -17,9 +20,12 @@ export const close_issue = async (id) => {
         headers: {
             "Accept": "application/vnd.github+json",
             "Authorization": `Bearer ${GITHUB_TOKEN}`,
-            "Content-Type": "application/x-www-form-urlencoded",
+            "User-Agent": "goseek",
+            "Content-Type": "application/json",
             "X-Github-Api-Version": "2022-11-28"
         },
         method: "PATCH"
     })
+    .then(() => console.log(`Closed issue #${id}`))
+    .catch((err) => console.log(`Error commenting on issue #${id}: ${err}`))
 }
