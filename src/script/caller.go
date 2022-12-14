@@ -7,7 +7,6 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"strings"
 )
 
 type Payload struct {
@@ -18,15 +17,12 @@ type Payload struct {
 
 func main() {
 	// Check if arguments number is valid
-	if len(os.Args) != 4 {
+	if len(os.Args) != 5 {
 		log.Fatal("Invalid number of arguments...")
 	}
 
-	// Extract data from issue body
-	issue := os.Args[2]
-
 	// Create json string
-	payload := Payload{os.Args[3], strings.Split(issue, "\n")[0], strings.Split(issue, "\n")[1]}
+	payload := Payload{os.Args[2], os.Args[3], os.Args[4]}
 
 	// Create the POST request body
 	body, err := json.Marshal(payload)
