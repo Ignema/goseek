@@ -16,13 +16,13 @@ const processRequest = async (event) => {
     await load
     try {
       const body = await event.request.json()
-      const response = await fetch(body["link"])
+      const response = await fetch(body["Link"])
       const html = await response.text()
-      const results = await exec_worker(html, body["query"])
+      const results = await exec_worker(html, body["Query"])
       for(const result of results) {
-        await comment_on_issue(body["issue"], result)
+        await comment_on_issue(body["Issue"], result)
       }
-      await close_issue(body["issue"])
+      await close_issue(body["Issue"])
       return new Response("Function activated!")
     } catch (error) {
       console.log(error)

@@ -21,13 +21,13 @@ func scrape(this js.Value, args []js.Value) interface{}  {
 		panic(err)
 	}
 
-	var results []string
+	var results []interface{}
 	doc.Find(args[1].String()).Each(func(i int, s *goquery.Selection) {
 		html, err := s.Html()
 		if err != nil {
 			panic(err)
 		}
-		results[i] = html
+		results = append(results, html)
 	})
 
 	return js.ValueOf(results)
