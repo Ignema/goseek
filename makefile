@@ -13,6 +13,7 @@ repo = goseek
 all: init clean wasm env dev
 
 init:
+	npm ci
 	wget -O ./tinygo.deb ${TINY_GO_PACKAGE}
 	sudo dpkg -i tinygo.deb
 	rm *.deb
