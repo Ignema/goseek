@@ -6,11 +6,11 @@ repo = goseek
 
 
 # Declaring phony targets
-.PHONY: init env wasm wasi dev publish clean
+.PHONY: init env build dev publish clean
 
 
 # Recipe definitions
-all: init clean wasm env dev
+all: init clean build env dev
 
 init:
 	wget -O ./tinygo.deb ${TINY_GO_PACKAGE}
@@ -28,13 +28,9 @@ env_repo:
 env_token:
 	sed -i "s/\(GITHUB_TOKEN = \"\)..*/\1$(token)\"/g" wrangler.toml
 
-wasm:
+build:
 	mkdir -p bin
 	cd src/function && go get -d . && tinygo build -o ../../bin/worker.wasm -target=wasm -gc=leaking -no-debug -opt=2 ./worker.go
-
-wasi:
-	mkdir -p bin
-	cd src/function && go get -d . && tinygo build -o ../../bin/wasi.wasm -wasm-abi=generic -target=wasi ./worker.go
 
 dev:
 	npx wrangler dev src/js/wrapper.mjs
