@@ -10,7 +10,7 @@ repo = goseek
 
 
 # Recipe definitions
-all: init clean wasm dev
+all: init clean wasm env dev
 
 init:
 	wget -O ./tinygo.deb ${TINY_GO_PACKAGE}
