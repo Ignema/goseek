@@ -13,7 +13,6 @@ repo = goseek
 all: init clean wasm env dev
 
 init:
-	npm ci
 	wget -O ./tinygo.deb ${TINY_GO_PACKAGE}
 	sudo dpkg -i tinygo.deb
 	rm *.deb
@@ -38,7 +37,7 @@ wasi:
 	cd src/function && go get -d . && tinygo build -o ../../bin/wasi.wasm -wasm-abi=generic -target=wasi ./worker.go
 
 dev:
-	npx wrangler dev src/util/wrapper.mjs
+	npx wrangler dev src/js/wrapper.mjs
 
 publish:
 	npx wrangler publish

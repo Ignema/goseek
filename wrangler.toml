@@ -1,5 +1,5 @@
 name = "goseek"
-main = "./src/util/wrapper.mjs"
+main = "./src/js/wrapper.mjs"
 compatibility_date = "2022-12-13"
 send_metrics = false
 
